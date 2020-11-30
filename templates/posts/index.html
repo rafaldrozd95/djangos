@@ -1,0 +1,131 @@
+
+        <!--================Header Menu Area =================-->
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block content %}
+        <!--================Post Slider Area =================-->
+        <section class="post_slider_area">
+			<div class="post_slider_inner owl-carousel">
+			    {% for slider in sliders %}
+				<div class="item">
+					<div class="post_s_item">
+						<div class="post_img">
+							{% if slider.image %}
+							<img src="{{slider.image.url}}" alt="">
+							{% endif %}
+						</div>
+						<div class="post_text">
+							{% for tag in slider.tag.all %}
+							<a class="cat" href="#">{{tag.title}}</a>
+							{% endfor %}
+							<a href="single-blog.html"><h4>{{slider.title}}</h4></a>
+							<p>{{slider.content|truncatechars:150}}</p>
+							<div class="date">
+								<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+								<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+        </section>
+        <!--================End Post Slider Area =================-->
+        
+        <!--================Blog Area =================-->
+        <section class="blog_area p_120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="blog_left_sidebar">
+                            {% for post in posts %}
+                            <article class="blog_style1">
+                            	<div class="blog_img">
+                                    {%if post.image%}
+                                    <img class="img-fluid" src="{{post.image.url}}" alt="">
+                                    {%endif%}
+                            	</div>
+                            	<div class="blog_text">
+									<div class="blog_text_inner">
+										<a class="cat" href="#">Gadgets</a>
+										<a href="{% url 'detail' pk=post.id slug=post.slug %}"><h4>{{post.title}}</h4></a>
+										<p>{{post.content|truncatechars:300}}</p>
+										<div class="date">
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{post.publishing_date}}</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+										</div>	
+									</div>
+                            	</div>
+                            </article>
+                            {% endfor %}
+                           
+                            <div class="row">
+                            	<div class="col-md-6">
+                            		<article class="blog_style1 small">
+										<div class="blog_img">
+											<img class="img-fluid" src="{% static 'img/home-blog/blog-small-1.jpg' %}" alt="">
+										</div>
+										<div class="blog_text">
+											<div class="blog_text_inner">
+												<a class="cat" href="#">Gadgets</a>
+												<a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+												<div class="date">
+													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+												</div>	
+											</div>
+										</div>
+									</article>
+                            	</div>
+                            	<div class="col-md-6">
+                            		<article class="blog_style1 small">
+										<div class="blog_img">
+											<img class="img-fluid" src="{% static 'img/home-blog/blog-small-2.jpg' %}" alt="">
+										</div>
+										<div class="blog_text">
+											<div class="blog_text_inner">
+												<a class="cat" href="#">Gadgets</a>
+												<a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+												<div class="date">
+													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+												</div>	
+											</div>
+										</div>
+									</article>
+                            	</div>
+                            </div>
+                          
+                          
+                            <nav class="blog-pagination justify-content-center d-flex">
+		                        <ul class="pagination">
+		                            <li class="page-item">
+		                                <a href="#" class="page-link" aria-label="Previous">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+		                                </a>
+		                            </li>
+		                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+		                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+		                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+		                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+		                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+		                            <li class="page-item">
+		                                <a href="#" class="page-link" aria-label="Next">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-right"></span>
+		                                    </span>
+		                                </a>
+		                            </li>
+		                        </ul>
+		                    </nav>
+                        </div>
+                    </div>
+                   {% include 'right_side.html'%}
+                </div>
+            </div>
+        </section>
+       {% endblock %}
