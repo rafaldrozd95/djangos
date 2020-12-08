@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block content %}
+ <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<h2>Register</h2>
+						
+					</div>
+				</div>
+            </div>
+        </section>
+<section class="blog_area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                   <h2>Delete </h2>             
+            <form method='POST'>
+                {% csrf_token %}
+                <a href="{% url 'detail' pk=post.id slug=post.slug %}" class="btn btn-info">No</a>
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </form>               
+                </div>
+            </div>
+           {% include 'right_side.html'%}
+        </div>
+    </div>
+</section>
+{% endblock %}

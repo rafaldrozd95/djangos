@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category,Tag
+from .models import Post, Category,Tag, Comment
 
 class AdminPost(admin.ModelAdmin):
     list_filter=['publishing_date']
@@ -8,6 +8,14 @@ class AdminPost(admin.ModelAdmin):
     class Meta:
         model = Post
 
+class AdminComment(admin.ModelAdmin):
+    list_filter = ['date_published']
+    list_display=['post', 'post']
+    search_fields = ['name', 'post__author']
+
+
+
 admin.site.register(Post, AdminPost)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Comment, AdminComment)
